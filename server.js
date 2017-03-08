@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
+const isPrime = require('./isPrime')
 const server = express()
 const port = process.env.PORT || 5000
 
@@ -17,6 +18,12 @@ server.get('/healthcheck', (req, res) => {
 
 server.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))
+})
+
+server.get('/is-prime/:number', (req, res) => {
+  const number = req.params.number
+  const isOrIsNot = isPrime(number) ? ' is ' : ' is not'
+  res.send(number + isOrIsNot + ' a prime number.')
 })
 
 server.listen(port, () => {
