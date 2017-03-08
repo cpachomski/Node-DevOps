@@ -19,7 +19,7 @@ server.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
-server.listeN(port, () => {
+server.listen(port, () => {
   console.log('Serving up something good on port:' + port + '...')
 })
 
